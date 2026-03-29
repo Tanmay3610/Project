@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Official Fiancé Constitution</title>
+  <style>
+    :root {
+      --bg: #f6efe3;
+      --paper: #fffaf2;
+      --ink: #2b1f16;
+      --muted: #6b5b4d;
+      --gold: #9b7b3d;
+      --gold-dark: #7d612d;
+      --accent: #b23a48;
+      --shadow: 0 18px 40px rgba(43, 31, 22, 0.12);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background:
+        radial-gradient(circle at top left, rgba(155,123,61,0.08), transparent 30%),
+        radial-gradient(circle at top right, rgba(178,58,72,0.08), transparent 28%),
+        linear-gradient(180deg, #f8f1e7 0%, #efe3d2 100%);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    .floating-motif {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.12;
+      background-image:
+        radial-gradient(circle at 10% 20%, #9b7b3d 0 2px, transparent 2px),
+        radial-gradient(circle at 80% 30%, #b23a48 0 2px, transparent 2px),
+        radial-gradient(circle at 40% 80%, #9b7b3d 0 2px, transparent 2px);
+      background-size: 240px 240px;
+      animation: drift 20s linear infinite;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0px); }
+      to { transform: translateY(-30px); }
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 48px 0 24px;
+    }
+
+    .book {
+      width: 100%;
+      background: linear-gradient(180deg, #fffdf8 0%, #f9f1e5 100%);
+      border: 2px solid rgba(155,123,61,0.25);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      padding: 48px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book::before,
+    .book::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(155,123,61,0.14), transparent 65%);
+      z-index: 0;
+    }
+
+    .book::before { top: -70px; left: -60px; }
+    .book::after { bottom: -80px; right: -50px; }
+
+    .cover {
+      text-align: center;
+      padding: 42px 20px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover .seal {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      border: 2px solid rgba(155,123,61,0.4);
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      color: var(--gold-dark);
+      background: rgba(255,255,255,0.7);
+      box-shadow: inset 0 0 0 8px rgba(155,123,61,0.08);
+    }
+
+    .eyebrow {
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: var(--gold-dark);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 1.08;
+      margin: 0;
+      color: #23170f;
+      text-shadow: 0 2px 0 rgba(255,255,255,0.5);
+    }
+
+    .subtitle {
+      margin: 18px auto 0;
+      max-width: 720px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .cover-actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-size: 0.98rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: 0 12px 24px rgba(43,31,22,0.1);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: white;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.82);
+      color: var(--ink);
+      border: 1px solid rgba(155,123,61,0.25);
+    }
+
+    .meta-strip {
+      margin-top: 28px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(155,123,61,0.18);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .section {
+      padding: 28px 0 8px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 24px 0 16px;
+      padding: 0 4px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: #2b1f16;
+    }
+
+    .section-title p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 700px;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      grid-column: span 6;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(155,123,61,0.18);
+      border-radius: var(--radius);
+      padding: 22px 22px 20px;
+      box-shadow: 0 10px 24px rgba(43,31,22,0.06);
+      backdrop-filter: blur(6px);
+      transform: translateY(18px);
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+
+    .card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 1.18rem;
+      color: #2c1f17;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    .card ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+
+    .quote {
+      grid-column: span 12;
+      text-align: center;
+      padding: 30px 24px;
+      background: linear-gradient(135deg, rgba(155,123,61,0.12), rgba(178,58,72,0.08));
+      border: 1px solid rgba(155,123,61,0.18);
+      border-radius: 28px;
+      box-shadow: 0 10px 24px rgba(43,31,22,0.06);
+    }
+
+    .quote p {
+      font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+      line-height: 1.8;
+      color: #3a2b20;
+      margin: 0;
+    }
+
+    .accordion {
+      margin-top: 8px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .acc-item {
+      border-radius: 20px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(155,123,61,0.16);
+      overflow: hidden;
+      box-shadow: 0 10px 22px rgba(43,31,22,0.05);
+    }
+
+    .acc-btn {
+      width: 100%;
+      background: transparent;
+      border: none;
+      text-align: left;
+      padding: 18px 20px;
+      font-size: 1.02rem;
+      font-family: inherit;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .acc-btn span:last-child {
+      font-size: 1.35rem;
+      color: var(--gold-dark);
+      transition: transform 0.25s ease;
+    }
+
+    .acc-item.open .acc-btn span:last-child {
+      transform: rotate(45deg);
+    }
+
+    .acc-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      padding: 0 20px;
+    }
+
+    .acc-content-inner {
+      padding: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .signature {
+      margin: 42px 0 10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(250,241,229,0.9));
+      border: 1px dashed rgba(155,123,61,0.38);
+      border-radius: 28px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .sig-box {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(155,123,61,0.14);
+      border-radius: 20px;
+      padding: 22px;
+      min-height: 150px;
+    }
+
+    .sig-line {
+      margin-top: 56px;
+      border-top: 1.8px solid rgba(43,31,22,0.35);
+      padding-top: 10px;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      text-align: center;
+      margin: 28px auto 0;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 760px;
+      padding-bottom: 34px;
+    }
+
+    .scroll-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 14px 28px rgba(43,31,22,0.16);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      z-index: 5;
+    }
+
+    .scroll-top.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .card { grid-column: span 12; }
+      .signature { grid-template-columns: 1fr; }
+      .book { padding: 34px 18px; }
+    }
+
+    @media (max-width: 560px) {
+      .cover-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .pill { width: 100%; text-align: center; }
+      .cover { padding-top: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-motif"></div>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+  <section class="hero">
+    <div class="container">
+      <div class="book" id="constitutionBook">
+        <div class="cover">
+          <div class="seal">⚖️</div>
+          <div class="eyebrow">Draft v1.0 • Subject to mutual approval</div>
+          <h1>📜 The Official<br>Fiancé Constitution</h1>
+          <p class="subtitle">
+            A light-hearted guide for smooth communication, better bonding, food-related diplomacy,
+            emotional safety, random teasing, and the gradual formation of a legendary team.
+          </p>
+
+          <div class="cover-actions">
+            <button class="btn btn-primary" onclick="scrollToSection('preamble')">Read the Constitution</button>
+            <button class="btn btn-secondary" onclick="toggleBlessing()">Read Official Blessing</button>
+          </div>
+
+          <div class="meta-strip">
+            <div class="pill">👨 Drafted by: Future Husband</div>
+            <div class="pill">👩 Pending Review by: Future Wife (High Authority)</div>
+          </div>
+        </div>
+
+        <section class="section" id="preamble">
+          <div class="section-title">
+            <div>
+              <h2>Preamble</h2>
+              <p>
+                We, the two future responsible-but-slightly-chaotic individuals, in order to build peace,
+                comfort, fun, food, understanding, and occasional harmless drama, do hereby establish this Official Fiancé Constitution 😄
+              </p>
+            </div>
+          </div>
+
+          <div class="quote reveal">
+            <p>
+              “Good bonding does not happen in one day, but little by little, it becomes something beautiful.”
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-title">
+            <div>
+              <h2>Articles of Understanding</h2>
+              <p>
+                Every healthy future partnership deserves structure, silliness, and a proper legal framework for snacks, calls, and emotional compensation.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card reveal">
+              <h3>ARTICLE 1: Communication Rights</h3>
+              <p><strong>Section 1.1 — Daily Interaction</strong><br>
+                Both parties are encouraged to communicate regularly, depending on mood, energy, and life happening around them.
+              </p>
+              <p><strong>Section 1.2 — Good Morning / Good Night Clause</strong><br>
+                “Good Morning” and “Good Night” messages are appreciated and warmly welcomed, but shall not be treated as legally binding attendance records 😂
+              </p>
+              <p><strong>Section 1.3 — Dry Reply Prevention Act</strong></p>
+              <ul>
+                <li>“hmm”</li>
+                <li>“okay”</li>
+                <li>“theek”</li>
+                <li>“cool”</li>
+              </ul>
+              <p>shall be permitted occasionally, but overuse may lead to mild emotional consequences for the other party 😄</p>
+            </div>
+
+            <div class="card reveal">
+              <h3>ARTICLE 2: Food & Snacks Policy</h3>
+              <p><strong>Section 2.1 — Favorite Dish Disclosure</strong><br>
+                Both parties must be transparent and honest regarding favorite foods, snacks, desserts, and comfort meals.
+              </p>
+              <p><strong>Section 2.2 — Controversial Food Clause</strong><br>
+                The status of <em>Lauki ki Sabji</em> and <em>Matar Paneer</em> shall remain under permanent review and may continue to be debated respectfully 😂
+              </p>
+              <p><strong>Section 2.3 — Future Taste Testing Rights</strong><br>
+                Both parties shall have equal rights to:</p>
+              <ul>
+                <li>taste each other’s food,</li>
+                <li>give unnecessary food reviews,</li>
+                <li>and claim “mine is better” without proper evidence 😌</li>
+              </ul>
+            </div>
+
+            <div class="card reveal">
+              <h3>ARTICLE 3: Emotional Well-Being Clause</h3>
+              <p><strong>Section 3.1 — Concern Rights</strong><br>
+                If one party is unwell, stressed, upset, or having an “okayish” day, the other party shall retain full rights to say:</p>
+              <ul>
+                <li>“Take care”</li>
+                <li>“Rest kar lo”</li>
+                <li>“Let me know if you need anything”</li>
+              </ul>
+              <p>without sounding overdramatic 😄</p>
+              <p><strong>Section 3.2 — Space & Comfort Balance</strong><br>
+                Both parties shall respect each other’s space, while also remembering that checking in sometimes is considered caring, not annoying 🙂
+              </p>
+            </div>
+
+            <div class="card reveal">
+              <h3>ARTICLE 4: Fun, Teasing & Random Activities</h3>
+              <p><strong>Section 4.1 — Rapid Fire Rights</strong><br>
+                Mini rapid fire rounds, “this or that”, and random fun chats are strongly encouraged.
+              </p>
+              <p><strong>Section 4.2 — Harmless Teasing Act</strong><br>
+                Light teasing shall be allowed, provided it remains:</p>
+              <ul>
+                <li>cute,</li>
+                <li>respectful,</li>
+                <li>and non-traumatic 😌</li>
+              </ul>
+              <p><strong>Section 4.3 — April Fool Protection Law</strong><br>
+                Any April Fool prank attempted by either party must be harmless, funny, and emotionally safe 😂</p>
+              <p>Fake breakup announcements, panic creation, or heart attack-level jokes are strictly prohibited.</p>
+            </div>
+
+            <div class="card reveal">
+              <h3>ARTICLE 5: Future Us Clause</h3>
+              <p><strong>Section 5.1 — Team Spirit</strong><br>
+                Both parties shall remember that they are not two people on opposite sides, but two people slowly learning how to become a good team ❤️
+              </p>
+              <p><strong>Section 5.2 — Baby Steps Policy</strong><br>
+                Since comfort and closeness take time, all progress shall be respected in the form of:</p>
+              <ul>
+                <li>small conversations,</li>
+                <li>little efforts,</li>
+                <li>random smiles,</li>
+                <li>and growing ease with each other 😄</li>
+              </ul>
+              <p><strong>Section 5.3 — Important Reminder</strong><br>
+                It is officially recognized that progress counts even when it arrives softly.</p>
+            </div>
+
+            <div class="card reveal">
+              <h3>ARTICLE 6: Special Regulations & Strictly Enforced Rules</h3>
+              <p><strong>Section 6.1 — “Ji” Usage Ban</strong><br>
+                Use of the word “Ji” in normal conversation is hereby declared strictly prohibited 🚫</p>
+              <p>Any unnecessary overuse of “Ji”, “Jii”, or “Jiiii” may be treated as:</p>
+              <ul>
+                <li>excessive formality,</li>
+                <li>suspicious politeness,</li>
+                <li>or emotional distance 😌</li>
+              </ul>
+              <p><strong>Exception:</strong> Use of “Ji” may be allowed in extreme sarcasm, dramatic arguments, or intentional overacting 😂</p>
+            </div>
+
+            <div class="card reveal">
+              <h3>ARTICLE 7: “Suiyan” Exposure Control Act</h3>
+              <p><strong>Section 7.1 — Safety Threshold</strong><br>
+                Use or prolonged exposure to “suiyan” (needles/injections) for more than 5 minutes is strictly prohibited 🚫😵
+              </p>
+              <p>Any violation of this clause may result in:</p>
+              <ul>
+                <li>panic,</li>
+                <li>irrational discomfort,</li>
+                <li>or immediate topic change demand 😄</li>
+              </ul>
+              <p><strong>Emergency Protocol</strong><br>
+                If “suiyan” exposure has crossed the officially permitted threshold of 5 minutes, the other party shall be legally bound to provide immediate emotional compensation.</p>
+              <ul>
+                <li>one cute apology 😌</li>
+                <li>one distraction via food-related topic 🍲</li>
+                <li>one funny reel / meme 😂</li>
+                <li>one approved comforting message 😄</li>
+                <li>or one random picture under Fiancé Privileges 📸</li>
+              </ul>
+            </div>
+
+            <div class="card reveal">
+              <h3>ARTICLE 8: Photo & Appearance Rights</h3>
+              <p><strong>Section 8.1 — Picture Request Privilege</strong><br>
+                Occasional requests for selfies and random pictures shall be considered valid under Fiancé Privileges 😄
+              </p>
+              <p><strong>Section 8.2 — No Overthinking Rule</strong><br>
+                Statements such as:</p>
+              <ul>
+                <li>“Achi nahi aa rahi”</li>
+                <li>“Main weird lag raha/rahi hoon”</li>
+              </ul>
+              <p>shall be gently challenged, as both parties are expected to cooperate 😂</p>
+            </div>
+
+            <div class="card reveal">
+              <h3>ARTICLE 9: Call Sessions & Awkwardness Management</h3>
+              <p><strong>Section 9.1 — Call Attempt Policy</strong><br>
+                At least one proper non-awkward call attempt shall be encouraged from time to time.
+              </p>
+              <p><strong>Section 9.2 — Initial Awkwardness Clause</strong><br>
+                If awkward silence occurs during a call, both parties shall collectively agree to label it as:</p>
+              <p><em>“Cute and part of the process.”</em> 😄</p>
+              <p><strong>Section 9.3 — Retry Mechanism</strong><br>
+                In case of one failed or awkward call, future calls shall not be cancelled permanently, and retries shall remain valid 😌</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-title">
+            <div>
+              <h2>Interpretation & Notes</h2>
+              <p>Additional legal clarifications for future disputes, misunderstandings, and suspiciously dry replies.</p>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <div class="acc-item">
+              <button class="acc-btn">
+                <span>Can future amendments be added to this Constitution?</span>
+                <span>+</span>
+              </button>
+              <div class="acc-content">
+                <div class="acc-content-inner">
+                  Yes. New clauses regarding chai rights, travel preferences, shopping stamina, or late-night snack policies may be added upon mutual consent.
+                </div>
+              </div>
+            </div>
+
+            <div class="acc-item">
+              <button class="acc-btn">
+                <span>What is the official dispute resolution mechanism?</span>
+                <span>+</span>
+              </button>
+              <div class="acc-content">
+                <div class="acc-content-inner">
+                  Any disputes arising under this Constitution shall be resolved through one good conversation, one proper call, or one plate of favorite food 😄
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-title">
+            <div>
+              <h2>Approval Status</h2>
+              <p>This document becomes spiritually valid upon mutual smiling, playful approval, and future amendments.</p>
+            </div>
+          </div>
+
+          <div class="signature reveal">
+            <div class="sig-box">
+              <strong>Drafted by:</strong><br><br>
+              Future Husband
+              <div class="sig-line">Signature</div>
+            </div>
+            <div class="sig-box">
+              <strong>Pending Review by:</strong><br><br>
+              Future Wife (High Authority) 👀
+              <div class="sig-line">Approval Signature</div>
+            </div>
+          </div>
+        </section>
+
+        <p class="footer-note" id="blessingText" style="display:none;">
+          <strong>Official Blessing:</strong><br>
+          May this Constitution protect both parties from overthinking, unnecessary dryness, emotional confusion,
+          and all forms of prolonged “suiyan” exposure. May peace, fun, and food prevail. ❤️
+        </p>
+
+        <p class="footer-note">
+          © Constitution of Future Us • Valid across WhatsApp, calls, food debates, random Sundays, and future inside jokes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    const accordionItems = document.querySelectorAll('.acc-item');
+    accordionItems.forEach(item => {
+      const btn = item.querySelector('.acc-btn');
+      const content = item.querySelector('.acc-content');
+
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        accordionItems.forEach(other => {
+          other.classList.remove('open');
+          other.querySelector('.acc-content').style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function toggleBlessing() {
+      const blessing = document.getElementById('blessingText');
+      blessing.style.display = blessing.style.display === 'none' ? 'block' : 'none';
+      if (blessing.style.display === 'block') {
+        blessing.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('show');
+      } else {
+        scrollTopBtn.classList.remove('show');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
