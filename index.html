@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>A Few Moments, So Far ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+header p {
+  opacity: 0.7;
+}
+
+/* TIMELINE */
+.timeline {
+  display: flex;
+  gap: 40px;
+  padding: 50px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.timeline::-webkit-scrollbar {
+  height: 6px;
+}
+.timeline::-webkit-scrollbar-thumb {
+  background: #ff4d6d;
+  border-radius: 10px;
+}
+
+/* CARD */
+.card {
+  min-width: 300px;
+  scroll-snap-align: center;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  transition: transform 0.4s ease, opacity 0.6s;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+/* DATE */
+.date {
+  font-size: 0.8rem;
+  color: #ff9aa2;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.date span {
+  font-size: 0.7rem;
+  color: #ccc;
+}
+
+/* IMAGE */
+.card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+/* FLOATING HEARTS (subtle) */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  color: #ff4d6d;
+  opacity: 0.6;
+  animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+/* FINAL MESSAGE */
+.final {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.reveal-btn {
+  padding: 12px 20px;
+  background: #ff4d6d;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  color: white;
+}
+
+.letter {
+  margin-top: 30px;
+  max-width: 600px;
+  margin-inline: auto;
+  opacity: 0;
+  transition: opacity 1s;
+  line-height: 1.6;
+}
+
+.letter.show {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>A Few Moments, So Far...</h1>
+  <p>Scroll sideways… this is our journey</p>
+</header>
+
+<section class="timeline">
+
+  <div class="card">
+    <div class="date">📅 Feb 14, 2026 <span>• first meeting</span></div>
+    <h3>It started here</h3>
+    <p>I can’t forget this day — it feels like ages ago.
+Strange how the person I was most nervous around slowly became the one I feel happiest with.</p>
+  </div>
+
+  <div class="card">
+    <div class="date">📅 Mar 8, 2026 <span>• first text</span></div>
+    <h3>Heyy 🤚 btw congratulations we won</h3>
+    <p>I remember this clearly — I had no idea what you were talking about, but I loved that you were the one who texted first.</p>
+  </div>
+
+  <div class="card">
+    <div class="date">📅 Mar 15, 2026 <span>• The day when it became all official</span></div>
+    <p>A big day for us —
+the day it all started to feel a little more real… we were rokafied.</p>
+  </div>
+
+  <div class="card">
+    <div class="date">📅 Mar 16, 2026 <span>• Our first date at Hotel Broadway…</span></div>
+    <p>a little awkward, a little quiet, whole lot of food discussions — but nice in its own way.
+And then our first kulfi together.
+You even offered me your pineapple kulfi… I was too clueless to return the gesture.
+Still regret that a little.</p>
+  </div>
+  
+  <div class="card">
+    <div class="date">📅 Mar 19, 2026 <span>• When you first came to your new home...</span></div>
+    <p>I still remember that yellow dress.  
+It suited you so well — I still admire it.</p>
+  </div>
+  
+  <div class="card">
+    <div class="date">📅 Mar 21, 2026 <span>• Our first ackward call...</span></div>
+    <p>I still remember that 54-second call…
+probably the most awkward I’ve ever been.</p>
+  </div>
+  
+  <div class="card">
+    <div class="date">📅 Mar 31, 2026 <span>• The day we wrote our own constituion...</span></div>
+    <p>The day when we wrote our own own little constituion and made our own republic day</p>
+  </div>
+  
+  <div class="card">
+    <div class="date">📅 Apr 4, 2026 <span>• The day I confessed I like talking to you...</span></div>
+    <p>One of the most nervous moments for me —
+telling you that I like talking to you.
+It just felt right.</p>
+  </div>
+  
+  <div class="card">
+    <div class="date">📅 Apr 9, 2026 <span>• When we had a small video call...</span></div>
+    <p>The day we had that short video call…
+I didn’t really want it to end.
+And you looked really amazing, as always.</p>
+  </div>
+  
+  <div class="card">
+    <div class="date">📅 Apr 10, 2026 <span>• The day you called me cute...</span></div>
+    <p>The day you called me cute…
+safe to say I was on top of the world.
+Still one of my favorite compliments, from one of my best person.</p>
+  </div>
+
+</section>
+
+<section class="final">
+  <h2>Wait… one more thing</h2>
+  <button class="reveal-btn" onclick="revealLetter()">Click Me</button>
+
+  <div class="letter" id="letter">
+    <p>
+      I don’t know where this will go yet…
+but talking to you has quietly become something I look forward to.
+      <br><br>
+      And that feels nice.
+    </p>
+  </div>
+</section>
+
+<script>
+// Reveal animation
+const cards = document.querySelectorAll('.card');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.3 });
+
+cards.forEach(card => observer.observe(card));
+
+// Floating hearts (slower & fewer)
+setInterval(() => {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerText = '❤';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = (Math.random() * 12 + 8) + 'px';
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 8000);
+}, 1200);
+
+// Letter reveal
+function revealLetter() {
+  document.getElementById("letter").classList.add("show");
+}
+</script>
+
+</body>
+</html>
