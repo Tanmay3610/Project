@@ -16,21 +16,41 @@ body {
   overflow-x: hidden;
 }
 
+/* HEADER */
 header {
   text-align: center;
   padding: 60px 20px;
+  position: relative;
 }
 
 header h1 {
   font-family: 'Playfair Display', serif;
   font-size: 3.8rem;
-  margin-bottom: 10px;
 }
 
 header p {
   opacity: 0.7;
 }
 
+/* SCROLL HINT */
+.scroll-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 40px;
+  font-size: 22px;
+  color: #fda4af;
+  opacity: 0.7;
+  animation: arrowMove 1.2s infinite ease-in-out;
+  transition: opacity 0.4s ease;
+}
+
+@keyframes arrowMove {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}
+
+/* TIMELINE */
 .timeline {
   display: flex;
   gap: 40px;
@@ -47,6 +67,7 @@ header p {
   border-radius: 10px;
 }
 
+/* CARD */
 .card {
   min-width: 300px;
   scroll-snap-align: center;
@@ -69,6 +90,7 @@ header p {
   transform: scale(1.05);
 }
 
+/* HEADINGS */
 .card h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.6rem;
@@ -86,6 +108,7 @@ header p {
   color: #d1d5db;
 }
 
+/* HEARTS */
 .heart {
   position: fixed;
   bottom: -20px;
@@ -101,6 +124,7 @@ header p {
   }
 }
 
+/* FINAL */
 .final {
   text-align: center;
   padding: 100px 20px;
@@ -134,6 +158,9 @@ header p {
 <header>
   <h1>A Few Moments, So Far...</h1>
   <p>Scroll sideways… this is our journey</p>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint" id="scrollHint">👉</div>
 </header>
 
 <section class="timeline">
@@ -249,7 +276,10 @@ header p {
 
 <script>
 const cards = document.querySelectorAll('.card');
+const timeline = document.querySelector('.timeline');
+const hint = document.getElementById('scrollHint');
 
+// reveal animation
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -260,6 +290,17 @@ const observer = new IntersectionObserver(entries => {
 
 cards.forEach(card => observer.observe(card));
 
+// scroll hint hide at end
+timeline.addEventListener('scroll', () => {
+  const maxScroll = timeline.scrollWidth - timeline.clientWidth;
+  if (timeline.scrollLeft >= maxScroll - 10) {
+    hint.style.opacity = 0;
+  } else {
+    hint.style.opacity = 0.7;
+  }
+});
+
+// floating hearts
 setInterval(() => {
   const heart = document.createElement('div');
   heart.classList.add('heart');
@@ -271,6 +312,7 @@ setInterval(() => {
   setTimeout(() => heart.remove(), 8000);
 }, 1500);
 
+// reveal letter
 function revealLetter() {
   document.getElementById("letter").classList.add("show");
 }
