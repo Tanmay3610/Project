@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>A Few Moments, So Far ❤️</title>
+<title>Little Moments, Endless Feelings ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -11,8 +11,8 @@
 body {
   margin: 0;
   font-family: 'Outfit', sans-serif;
-  background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
-  color: white;
+  background: linear-gradient(135deg, #fff1f5, #ffe4e6, #fff);
+  color: #4b5563;
   overflow-x: hidden;
 }
 
@@ -26,6 +26,7 @@ header {
 header h1 {
   font-family: 'Playfair Display', serif;
   font-size: 3.8rem;
+  color: #be123c;
 }
 
 header p {
@@ -38,10 +39,9 @@ header p {
   bottom: 10px;
   right: 40px;
   font-size: 22px;
-  color: #fda4af;
-  opacity: 0.7;
+  color: #fb7185;
+  opacity: 0.8;
   animation: arrowMove 1.2s infinite ease-in-out;
-  transition: opacity 0.4s ease;
 }
 
 @keyframes arrowMove {
@@ -63,7 +63,7 @@ header p {
   height: 6px;
 }
 .timeline::-webkit-scrollbar-thumb {
-  background: #ff4d6d;
+  background: #fb7185;
   border-radius: 10px;
 }
 
@@ -71,14 +71,15 @@ header p {
 .card {
   min-width: 300px;
   scroll-snap-align: center;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 25px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 30px rgba(255, 105, 135, 0.2);
   transition: all 0.4s ease;
   opacity: 0;
   transform: translateY(50px);
+  border: 1px solid rgba(255, 182, 193, 0.3);
 }
 
 .card.show {
@@ -88,32 +89,34 @@ header p {
 
 .card:hover {
   transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(255, 105, 135, 0.3);
 }
 
 /* HEADINGS */
 .card h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.6rem;
+  color: #9f1239;
 }
 
 .date {
   font-size: 0.75rem;
-  color: #fda4af;
+  color: #fb7185;
   margin-bottom: 8px;
 }
 
 .card p {
   font-size: 1rem;
   line-height: 1.7;
-  color: #d1d5db;
+  color: #6b7280;
 }
 
 /* HEARTS */
 .heart {
   position: fixed;
   bottom: -20px;
-  color: #ff4d6d;
-  opacity: 0.5;
+  color: #fb7185;
+  opacity: 0.6;
   animation: floatUp 8s linear infinite;
 }
 
@@ -130,13 +133,25 @@ header p {
   padding: 100px 20px;
 }
 
+.final h2 {
+  color: #be123c;
+}
+
 .reveal-btn {
-  padding: 12px 20px;
-  background: #ff4d6d;
+  padding: 12px 22px;
+  background: linear-gradient(135deg, #fb7185, #f43f5e);
   border: none;
   border-radius: 30px;
   cursor: pointer;
   color: white;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(244, 63, 94, 0.4);
+  transition: all 0.3s ease;
+}
+
+.reveal-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 25px rgba(244, 63, 94, 0.5);
 }
 
 .letter {
@@ -145,6 +160,9 @@ header p {
   margin-inline: auto;
   opacity: 0;
   transition: opacity 1s;
+  background: rgba(255,255,255,0.6);
+  padding: 20px;
+  border-radius: 15px;
 }
 
 .letter.show {
@@ -156,10 +174,8 @@ header p {
 <body>
 
 <header>
-  <h1>A Few Moments, So Far...</h1>
+  <h1>Little Moments, Endless Feelings ❤️</h1>
   <p>Scroll sideways… this is our journey</p>
-
-  <!-- Scroll hint -->
   <div class="scroll-hint" id="scrollHint">👉</div>
 </header>
 
@@ -183,7 +199,7 @@ header p {
     Something about that day just felt right 😊.
     </p>
   </div>
-  
+
   <div class="card">
     <div class="date">📅 Mar 8, 2026 • first text</div>
     <h3>That first message 💬</h3>
@@ -289,7 +305,6 @@ const cards = document.querySelectorAll('.card');
 const timeline = document.querySelector('.timeline');
 const hint = document.getElementById('scrollHint');
 
-// reveal animation
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -300,7 +315,6 @@ const observer = new IntersectionObserver(entries => {
 
 cards.forEach(card => observer.observe(card));
 
-// scroll hint hide at end
 timeline.addEventListener('scroll', () => {
   const maxScroll = timeline.scrollWidth - timeline.clientWidth;
   if (timeline.scrollLeft >= maxScroll - 10) {
@@ -310,7 +324,6 @@ timeline.addEventListener('scroll', () => {
   }
 });
 
-// floating hearts
 setInterval(() => {
   const heart = document.createElement('div');
   heart.classList.add('heart');
@@ -322,7 +335,6 @@ setInterval(() => {
   setTimeout(() => heart.remove(), 8000);
 }, 1500);
 
-// reveal letter
 function revealLetter() {
   document.getElementById("letter").classList.add("show");
 }
